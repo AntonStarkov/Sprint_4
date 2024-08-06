@@ -1,28 +1,18 @@
-package ChromeTests;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.praktikum.OrderPage;
 
-import java.time.Duration;
-
-import static ru.yandex.praktikum.constants.OrderPageConstants.ORDERPAGE_URL;
-import static ru.yandex.praktikum.constants.OrderPageConstants.ORDER_PROCESSED_TEXT;
-
 public class CreateOrder {
+    //Ссылка на страницу создания заказа
+    private static final String ORDERPAGE_URL = "https://qa-scooter.praktikum-services.ru/order";
     private WebDriver driver;
 
     @Before
     public void setUp() throws Exception {
-        driver = new ChromeDriver();
+        driver = TestData.getWebDriver();
     }
-
-
 
     @Test
     public void testOrderPage(){
@@ -33,7 +23,7 @@ public class CreateOrder {
         orderPage.secondFormFilling("next", (byte) 11, (byte) 4, "greyAndBlack", "Комментарии");
         orderPage.orderButtonClick();
         orderPage.confirmOrderButtonClick();
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(ORDER_PROCESSED_TEXT)); //bugged
+        orderPage.getOrderProcessedText(); //chrome bugged
     }
     @After
     public void closeDriverSession(){

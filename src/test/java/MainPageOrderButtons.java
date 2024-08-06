@@ -1,22 +1,20 @@
-package ChromeTests;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.praktikum.MainPage;
 
 import static org.junit.Assert.assertEquals;
-import static ru.yandex.praktikum.constants.OrderPageConstants.ORDERPAGE_URL;
-import static ru.yandex.praktikum.constants.MainPageConstants.MAINPAGE_URL;
 
 public class MainPageOrderButtons {
     private WebDriver driver;
-
+    //Ссылка на стартовую страницу ЯндексСамокат
+    private static final String MAINPAGE_URL = "https://qa-scooter.praktikum-services.ru";
+    //Ссылка на страницу создания заказа
+    private static final String ORDERPAGE_URL = "https://qa-scooter.praktikum-services.ru/order";
     @Before
     public void setUp() throws Exception {
-        driver = new ChromeDriver();
+        driver = TestData.getWebDriver();
     }
     @Test
     public void clickToBottomOrderButton(){
